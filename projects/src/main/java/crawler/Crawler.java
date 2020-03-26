@@ -49,7 +49,7 @@ public class Crawler {
         Response response = call.execute();
         if (!response.isSuccessful()) {
             System.out.println("请求失败！");
-            return  null;
+            return null;
         }
         return response.body().string();
     }
