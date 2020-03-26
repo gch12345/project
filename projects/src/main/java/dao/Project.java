@@ -56,4 +56,17 @@ public class Project {
     public int getOpenIssueCount() {
         return openIssueCount;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", starCount=" + starCount +
+                ", forkCount=" + forkCount +
+                ", openIssueCount=" + openIssueCount +
+                '}';
+    }
+
 }
