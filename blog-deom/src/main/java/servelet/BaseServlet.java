@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class BaseServlet extends HttpServlet {
+public abstract class BaseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -38,7 +38,5 @@ public class BaseServlet extends HttpServlet {
         pw.flush();
     }
 
-    public Object process(HttpServletRequest req) throws Exception {
-        return null;
-    }
+    public abstract Object process(HttpServletRequest req) throws Exception ;
 }
