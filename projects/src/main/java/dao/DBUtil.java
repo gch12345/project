@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUtil {
-    private static String URl = "jdbc:mysql://localhost:3306/database";
+    private static String URl = "jdbc:mysql://localhost:3306/java_github_crawler";
     private static String USERNAME = "root";
-    private static String PASSWORD = "root";
+    private static String PASSWORD = "";
 
     private static volatile DataSource dataSource = null;
 
