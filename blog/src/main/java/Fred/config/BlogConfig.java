@@ -16,7 +16,8 @@ public class BlogConfig implements WebMvcConfigurer {
                 .excludePathPatterns("plugins/editor/**")
                 .excludePathPatterns("/")
                 .excludePathPatterns("/login")
-                .excludePathPatterns("/a/*");
+                .excludePathPatterns("/a/**")
+                .excludePathPatterns("/index");
     }
 }
 

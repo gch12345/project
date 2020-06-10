@@ -32,4 +32,9 @@
     select id, user_id, name
     from category
   </select>
+  <select id="queryCategoriesByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_id, name
+    from category
+    where user_id = #{id,jdbcType=BIGINT}
+  </select>
 </mapper>

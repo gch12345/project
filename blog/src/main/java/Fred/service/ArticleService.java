@@ -20,4 +20,8 @@ public class ArticleService {
     public Article queryArticle(Long id) {
         return articleMapper.selectByPrimaryKey(id);
     }
+
+    public List<Article> queryArticlesByUserId(Long id) {
+        return articleMapper.queryArticlesByUserId(id);
+    }
 }

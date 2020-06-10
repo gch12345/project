@@ -7,9 +7,9 @@
         <result column="article_id" property="articleId" jdbcType="BIGINT"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
-      <association property="user" resultMap="Fred.mapper.UserMapper.BaseResultMap">
-        <id column="user_id" property="id" jdbcType="BIGINT"/>
-      </association>
+        <association property="user" resultMap="Fred.mapper.UserMapper.BaseResultMap">
+            <id column="user_id" property="id" jdbcType="BIGINT"/>
+        </association>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
