@@ -18,4 +18,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<Article> queryArticlesByUserId(Long id);
+
+    int updateByCondition(Article article);
 }

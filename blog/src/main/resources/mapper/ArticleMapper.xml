@@ -13,9 +13,9 @@
         <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
         <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
         <result column="comment_count" property="commentCount" jdbcType="INTEGER"/>
-      <association property="author" resultMap="Fred.mapper.UserMapper.BaseResultMap">
-        <id column="user_id" property="id" jdbcType="BIGINT"/>
-      </association>
+        <association property="author" resultMap="Fred.mapper.UserMapper.BaseResultMap">
+            <id column="user_id" property="id" jdbcType="BIGINT"/>
+        </association>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
@@ -46,6 +46,38 @@
             view_count  = #{viewCount,jdbcType=BIGINT},
             created_at  = #{createdAt,jdbcType=TIMESTAMP},
             updated_at  = #{updatedAt,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByCondition" parameterType="Fred.model.Article">
+        update article
+        set
+        <if test="userId != null">
+            user_id = #{userId,jdbcType=BIGINT},
+        </if>
+        <if test="coverImage != null and coverImage != ''">
+            cover_image = #{coverImage,jdbcType=VARCHAR},
+        </if>
+        <if test="categoryId != null">
+            category_id = #{categoryId,jdbcType=INTEGER},
+        </if>
+        <if test="status != null">
+            status = #{status,jdbcType=TINYINT},
+        </if>
+        <if test="title != null">
+            title = #{title,jdbcType=VARCHAR},
+        </if>
+        <if test="content != null">
+            content = #{content,jdbcType=VARCHAR},
+        </if>
+        <if test="viewCount != null">
+            view_count = #{viewCount,jdbcType=BIGINT},
+        </if>
+        <if test="createdAt != null">
+            created_at = #{createdAt,jdbcType=TIMESTAMP},
+        </if>
+        <if test="updatedAt != null">
+            updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+        </if>
         where id = #{id,jdbcType=BIGINT}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -84,7 +116,7 @@
         from article a
                  join user u on a.user_id = u.id
                  left join
-             (select a.id  id,
+             (select a.id                id,
                      a.user_id,
                      a.cover_image,
                      a.category_id,
