@@ -7,6 +7,7 @@ import Fred.model.User;
 import Fred.service.ArticleService;
 import Fred.service.CategoryService;
 import Fred.service.CommentService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,8 @@ public class ArticleController {
     @RequestMapping("/a/{id}")
     public String detail(@PathVariable("id") Long id, Model model) {
         Article article = articleService.queryArticle(id);
+        article.setViewCount(article.getViewCount() + 1);
+        articleService.updateByCondition(article);
         List<Comment> comments = commentService.queryComments(id);
         article.setCommentList(comments);
         model.addAttribute("article", article);
@@ -47,7 +50,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/writer")
-    public String writer(HttpSession session, Long activeCid, Model model) {
+    public String writer(HttpSession session, @RequestParam(value = "activeCid", required = false) Long activeCid, Model model) {
         User user = (User) session.getAttribute("user");
         List<Article> articles = articleService.queryArticlesByUserId(user.getId());
         model.addAttribute("articleList", articles);
