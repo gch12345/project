@@ -17,7 +17,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/c/add", method = RequestMethod.POST)
     public String addCategory(HttpSession session, Category category) {
-        if (category.getId() == null) {
+        if (category.getName().equals("")) {
             return "redirect:/writer";
         }
         User user = (User)session.getAttribute("user");
